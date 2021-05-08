@@ -36,15 +36,15 @@ function EmailVerificationPage() {
     },[emailVerificationToken])
     
     return (
-        <Stack height="100vh" alignItems="center" background="gray.100" justifyContent="center">
+        <Stack height="100vh" alignItems="center" background="gray.100" justifyContent="center" p={4}>
+            <Stack p={4}>
             <Heading></Heading>
-            <Alert status={status} width="400px">
+            <Alert status={status}>
                 <AlertIcon />
                 {message}
             </Alert>
-            
-            
-                <Button onClick={( ) => history.replace('/')} colorScheme="blue">Home</Button>
+            </Stack>
+            <Button onClick={( ) => history.replace('/')} colorScheme="blue">Home</Button>
         </Stack>
     )
 }
