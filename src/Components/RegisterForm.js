@@ -2,8 +2,8 @@ import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { FormErrorMessage, FormLabel } from '@chakra-ui/form-control'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
-import { Link } from '@chakra-ui/layout'
-import { Flex, Heading, Text } from '@chakra-ui/layout'
+import { Link, VStack } from '@chakra-ui/layout'
+import { Heading, Text } from '@chakra-ui/layout'
 import { Field, Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
 import { Link as ReachLink} from 'react-router-dom'
@@ -88,8 +88,8 @@ function RegisterForm() {
 
 
     return (
-      <Flex height="100vh" alignItems="center" background="gray.100" justifyContent="center">
-        <Flex direction="column" background="white" p={12} rounded={6} shadow="2xl">
+      <VStack p={4}>
+        <VStack p="4">
         <Heading mb={6}>Sign up</Heading>
           <Formik
             initialValues={initialValues}
@@ -147,7 +147,7 @@ function RegisterForm() {
                                 </Button>
                             </InputRightElement>
                             </InputGroup>
-                      <FormErrorMessage width="300px">{form.errors.password}</FormErrorMessage>
+                      <FormErrorMessage width="100%" maxW="290px">{form.errors.password}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
@@ -155,7 +155,7 @@ function RegisterForm() {
                 <Button
                   mb={4}
                   mt={3}
-                  width="300px"
+                  width="100%"
                   colorScheme="blue"
                   isLoading={props.isSubmitting}
                   type="submit"
@@ -171,8 +171,8 @@ function RegisterForm() {
               Sign In
             </Link>
           </Text>
-        </Flex>
-    </Flex>
+        </VStack>
+    </VStack>
     )
   }
 

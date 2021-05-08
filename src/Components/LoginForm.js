@@ -2,8 +2,8 @@ import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { FormErrorMessage, FormLabel } from '@chakra-ui/form-control'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
-import { Link } from '@chakra-ui/layout'
-import { Flex, Heading, Text } from '@chakra-ui/layout'
+import { Link, VStack } from '@chakra-ui/layout'
+import { Heading, Text } from '@chakra-ui/layout'
 import { Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { Link as ReachLink, useHistory} from 'react-router-dom'
@@ -75,9 +75,9 @@ function LoginForm() {
     
       
         return (
-          <Flex height="100vh" alignItems="center" background="gray.100" justifyContent="center">
-            <Flex direction="column" background="white" p={12} rounded={6} shadow="2xl">
-            <Heading mb={6}>Sign In</Heading>
+          <VStack p={4}>
+            <VStack p="4">
+            <Heading>Sign In</Heading>
               <Formik
                 initialValues={initialValues}
                 validationSchema = {validationSchema}
@@ -93,7 +93,8 @@ function LoginForm() {
                           <Input 
                             {...field} 
                             placeholder="Enter email" 
-                            id="email" variant="outline" 
+                            id="email" 
+                            variant="outline" 
                             type="email"
                           />
                           <FormErrorMessage mb={3}>{form.errors.email}</FormErrorMessage>
@@ -119,7 +120,7 @@ function LoginForm() {
                                     </Button>
                                 </InputRightElement>
                                 </InputGroup>
-                          <FormErrorMessage width="300px">{form.errors.password}</FormErrorMessage>
+                          <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                         </FormControl>
                       )}
                     </Field>
@@ -130,7 +131,7 @@ function LoginForm() {
                       colorScheme="blue"
                       isLoading={props.isSubmitting}
                       type="submit"
-                      width="300px"
+                      width="100%"
                     >
                       Log In
                     </Button>
@@ -143,8 +144,8 @@ function LoginForm() {
                   Sign Up
                 </Link>
               </Text>
-            </Flex>
-        </Flex>
+            </VStack>
+          </VStack>   
         )
       }
 
