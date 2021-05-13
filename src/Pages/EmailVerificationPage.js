@@ -44,7 +44,7 @@ function EmailVerificationPage() {
                 {message}
             </Alert>
             </Stack>
-            <Button onClick={( ) => history.replace('/')} colorScheme="blue">Home</Button>
+            <Button onClick={( ) => history.replace('/')} colorScheme="orange">Home</Button>
         </Stack>
     )
 }

@@ -5,6 +5,8 @@ import HomePage from "./Pages/HomePage";
 import EmailVerificationPage from "./Pages/EmailVerificationPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import LogoutPage from "./Pages/LogoutPage";
+import Quetions from "./Pages/Quetions";
+import Profile from "./Pages/Profile";
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
          <Route path="/login" component={LoginPage}/>
          <Route path="/register" component={RegisterPage}/>
          <Route path="/logout" component={LogoutPage}/>
+         <Route path="/questions" component={Quetions}/>
+         <Route path="/profile" component={Profile}/>
          <Route path="/verify-mail/:emailVerificationToken" component={EmailVerificationPage}/>
          <Route path="*" component={NotFoundPage}/>
        </Switch>

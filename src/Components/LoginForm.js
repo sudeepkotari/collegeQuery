@@ -3,7 +3,7 @@ import { FormControl } from '@chakra-ui/form-control'
 import { FormErrorMessage, FormLabel } from '@chakra-ui/form-control'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import { Link, VStack } from '@chakra-ui/layout'
-import { Heading, Text } from '@chakra-ui/layout'
+import { Text } from '@chakra-ui/layout'
 import { Field, Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { Link as ReachLink, useHistory} from 'react-router-dom'
@@ -75,9 +75,7 @@ function LoginForm() {
     
       
         return (
-          <VStack p={4}>
             <VStack p="4">
-            <Heading>Sign In</Heading>
               <Formik
                 initialValues={initialValues}
                 validationSchema = {validationSchema}
@@ -128,7 +126,7 @@ function LoginForm() {
                     <Button
                       mt={3}
                       mb={3}
-                      colorScheme="blue"
+                      colorScheme="orange"
                       isLoading={props.isSubmitting}
                       type="submit"
                       width="100%"
@@ -140,12 +138,11 @@ function LoginForm() {
               </Formik>
               <Text>
                 Dont have account..?
-                <Link as={ReachLink} color="teal.500" to="/register">
+                <Link as={ReachLink} color="orange.400" to="/register">
                   Sign Up
                 </Link>
               </Text>
-            </VStack>
-          </VStack>   
+            </VStack>  
         )
       }
 

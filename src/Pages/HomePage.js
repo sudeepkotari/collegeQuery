@@ -4,6 +4,8 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import localStorage from 'local-storage';
+import { VStack } from '@chakra-ui/layout'
+import Header from '../Components/Header'
 
 function HomePage() {
 
@@ -66,10 +68,13 @@ function HomePage() {
     }
 
     return (
-        <div>
-            <Heading>this is page is under development</Heading>
+        <VStack px="4" py="1">
+            <Header/>
+            <Heading
+            fontSize={{ base: "24px", md: "40px", lg: "56px" }}
+            >this is page is under development</Heading>
             <Link to="/logout"><Button>logOut</Button></Link>
-        </div>
+        </VStack>
     )
 }
 
