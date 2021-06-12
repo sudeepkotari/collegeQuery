@@ -66,7 +66,9 @@ function RegisterForm() {
         {
             "name": values.name,
             "email": values.email,
-            "password": values.password
+            "password": values.password,
+            "about":" ",
+            profileUrl:" "
         })
         actions.setSubmitting(false);
         setMessage({
