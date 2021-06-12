@@ -8,15 +8,18 @@ function LogoutPage() {
     const histroy = useHistory();
     const logout = async () => {
         try {
-            const refreshToken = localStorage.get('refreshToken');
-            await axios.delete('https://college-query.herokuapp.com/auth/logout',
-            {
-                "refreshToken": refreshToken
+            const refToken = localStorage.get('refreshToken');
+            axios.delete('https://college-query.herokuapp.com/auth/logout',{
+                data:{
+                    "refreshToken": refToken 
+                }
             })
             localStorage.remove('accessToken');
             localStorage.remove('refreshToken');
+            localStorage.remove('userId');
             histroy.replace('/login');
         } catch (error) {
+            console.log(error.response)
             localStorage.remove('accessToken');
             localStorage.remove('refreshToken');
             histroy.replace('/login');

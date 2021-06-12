@@ -11,6 +11,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useToast } from '@chakra-ui/toast'
 import localStorage from 'local-storage';
+import jwt_decode from "jwt-decode";
 
 function LoginForm() {
 
@@ -38,7 +39,7 @@ function LoginForm() {
         status:"info",
         title: "Enter valid credentials",
         description:"enter valid email address and password",
-        duration:3000
+        duration:1
       })
 
       useEffect(() => {
@@ -50,6 +51,11 @@ function LoginForm() {
           isClosable: true,
         })
       }, [message,toast])
+
+      function getUserId(accessToken) {
+        const decoded = jwt_decode(accessToken);
+        return decoded.aud;
+      }
     
       const onSubmit = async(values, actions) => {
         try {
@@ -61,6 +67,8 @@ function LoginForm() {
           const { accessToken, refreshToken } = response.data;
           localStorage.set("accessToken", accessToken);
           localStorage.set("refreshToken", refreshToken);
+          const userId = await getUserId( accessToken );
+          localStorage.set("userId", userId);
           history.replace('/');
           actions.setSubmitting(false)
           } catch (error) {

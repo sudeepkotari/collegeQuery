@@ -1,5 +1,5 @@
 import { HStack } from '@chakra-ui/layout'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { IconButton } from '@chakra-ui/button'
 import { AiOutlineHome } from "react-icons/ai"
@@ -10,17 +10,50 @@ import { useColorMode } from '@chakra-ui/color-mode'
 import { FaSun, FaMoon} from "react-icons/fa"
 import { Flex } from '@chakra-ui/layout'
 import Logo from './Logo'
+import SearchBar from './SearchBar'
+import AddQuestion from './AddQuestion'
+import { useLazyQuery } from '@apollo/client'
+import { GET_USER } from '../Graphql/Queries'
+import localStorage from 'local-storage';
 
 function NavBar() {
+  const [profileUrl, serProfileUrl] = useState("")
+
+const userId = localStorage.get('userId');
+
+const [getUser, { data }] = useLazyQuery(GET_USER,
+    {variables: 
+        { 
+            id: userId 
+        },
+        fetchPolicy: "network-only"
+    })
+
+useEffect(() => {
+    getUser();
+},[])// eslint-disable-line react-hooks/exhaustive-deps
+
+useEffect(()=>{
+    if(data){
+      serProfileUrl(data.getUser.profileUrl)
+    }
+},[data])
+  
   const { colorMode, toggleColorMode } = useColorMode();
+  const [navBarBackGround, setnavBarBackGround] = useState("")
+
+  useEffect(() => {
+    colorMode === "light" ? setnavBarBackGround("white") : setnavBarBackGround("#1a202c");
+  }, [colorMode])
 
     return (
-        <HStack pr="4" pl="4" w="100vw">
+        <HStack pr="4" pl="4" w="98vw" top="0" pos="sticky" bg={ navBarBackGround } zIndex="1">
+          <Spacer/>
           <Logo/>
           <Spacer/>
             <NavLink  activeClassName="active_class" exact to="/"><IconButton 
             bg="none"
-            icon={<AiOutlineHome/>}
+            icon={ <AiOutlineHome/> }
             w={{
                 base:"30px",
                 md:"60px"
@@ -55,10 +88,28 @@ function NavBar() {
                   bg: "orange",
                 }
               }}
-            /></NavLink>
+          /></NavLink>
+          <HStack
+            display={{
+                base:"none",
+                sm:"none",
+                md:"initial"
+            }}
+          >
+            <SearchBar/>
+          </HStack>
+          <HStack
+            display={{
+                base:"none",
+                sm:"none",
+                md:"initial"
+            }}
+          >
+            <AddQuestion/>
+          </HStack>
             <Spacer/>
 
-            <NavLink to="/profile" position="absolute"><Avatar src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+            <NavLink to="/profile" position="absolute"><Avatar src={profileUrl}
             w={{
               base:"30px",
               md:"50px"

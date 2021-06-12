@@ -46,7 +46,7 @@ function RegisterForm() {
     status:"info",
     title: "Enter valid credentials",
     description:"enter your correct name,valid email addres and strong password",
-    duration:3000
+    duration:1
   })
 
   useEffect(() => {

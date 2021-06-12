@@ -7,20 +7,20 @@ function Logo() {
     return (
         <Flex>
             <Heading
-            fontSize={{ base: "10px", md: "20px", lg: "30px" }}
+            fontSize={{ base: "20px", md: "30px", lg: "30px" }}
             bgGradient="linear(to-r, orange.500,yellow.200)"
             bgClip="text"
             >college</Heading>
               <Image 
-              src="logo.png"
+              src={process.env.PUBLIC_URL + '/logo.png'}
               boxSize={{
-                  base:"15px",
-                  sm:"20px",
+                  base:"25px",
+                  sm:"30px",
                   md:"40px"
               }}
               />
             <Heading
-            fontSize={{ base: "10px", md: "20px", lg: "30px" }}
+            fontSize={{ base: "20px", md: "30px", lg: "30px" }}
             bgGradient="linear(to-r, orange.500,red.500)"
             bgClip="text"
             >uery</Heading>

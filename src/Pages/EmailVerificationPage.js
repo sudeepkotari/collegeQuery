@@ -1,4 +1,3 @@
-import { Heading } from '@chakra-ui/layout'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import axios from 'axios';
@@ -7,12 +6,19 @@ import { Alert } from '@chakra-ui/alert';
 import { AlertIcon } from '@chakra-ui/alert';
 import { Stack } from '@chakra-ui/layout';
 import localStorage from 'local-storage';
+import jwt_decode from "jwt-decode";
 
 function EmailVerificationPage() {
     const { emailVerificationToken } = useParams();
     const history = useHistory();
     const [message, setMessage] = useState('email verification is processing!');
     const [status, setStatus] = useState('info');
+
+    function getUserId(accessToken) {
+        const decoded = jwt_decode(accessToken);
+        console.log(decoded.aud)
+        return decoded.aud;
+      }
     
 
     useEffect(() => {
@@ -24,6 +30,8 @@ function EmailVerificationPage() {
             const { accessToken, refreshToken } = response.data;
             localStorage.set("accessToken", accessToken);
             localStorage.set("refreshToken", refreshToken);
+            const userId = getUserId( accessToken );
+            localStorage.set("userId", userId);
             setMessage('Account verified successfully. Continue!');
             setStatus('success');
             
@@ -36,9 +44,8 @@ function EmailVerificationPage() {
     },[emailVerificationToken])
     
     return (
-        <Stack height="100vh" alignItems="center" background="gray.100" justifyContent="center" p={4}>
+        <Stack height="100vh" alignItems="center" justifyContent="center" p={4}>
             <Stack p={4}>
-            <Heading></Heading>
             <Alert status={status}>
                 <AlertIcon />
                 {message}
