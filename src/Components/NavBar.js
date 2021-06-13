@@ -17,7 +17,7 @@ import { GET_USER } from '../Graphql/Queries'
 import localStorage from 'local-storage';
 
 function NavBar() {
-  const [profileUrl, serProfileUrl] = useState("")
+  const [profileUrl, serProfileUrl] = useState(" ")
 
 const userId = localStorage.get('userId');
 

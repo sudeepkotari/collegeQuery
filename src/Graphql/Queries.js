@@ -11,6 +11,7 @@ query getAllPosts($page: Int,$size: Int){
       profileUrl
     }
     question
+    createdAt
     answers{
       user{
         name
@@ -18,6 +19,7 @@ query getAllPosts($page: Int,$size: Int){
         profileUrl
       }
       answer
+      createdAt
     }
   }
 }
@@ -31,6 +33,7 @@ query getQuestions($page: Int,$size: Int){
       about
     }
     question
+    createdAt
   }
 }
 `
@@ -52,6 +55,7 @@ query getPost($id: ID){
       profileUrl
     }
     question
+    createdAt
     answers{
       user{
         name
@@ -59,6 +63,7 @@ query getPost($id: ID){
         profileUrl
       }
       answer
+      createdAt
     }
   }
 }
@@ -73,6 +78,7 @@ query getPostsByUser($id: ID){
       profileUrl
     }
     question
+    createdAt
     answers{
       user{
         name
@@ -80,6 +86,7 @@ query getPostsByUser($id: ID){
         profileUrl
       }
       answer
+      createdAt
     }
   }
 }

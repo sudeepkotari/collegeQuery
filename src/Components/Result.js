@@ -8,7 +8,6 @@ function Result(props) {
 
     function showPost(){
         history.push(`/post/${props.result._id}`)
-        console.log(props.result._id+"this is clicked")
     }
     return (
         <HStack w="100%" cursor="pointer" onClick={ showPost }> 

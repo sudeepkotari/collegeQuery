@@ -1,6 +1,7 @@
 import { HStack, Stack, Spacer, Text } from '@chakra-ui/layout'
 import React from 'react'
 import { Avatar } from '@chakra-ui/avatar'
+import moment from 'moment'
 
 
 function PostHeader(props) {
@@ -20,7 +21,7 @@ function PostHeader(props) {
               <Text fontSize="xs">{props.post.user.about}</Text>
             </Stack>
             <Spacer/>
-            <Text color="gray.500" fontSize="xs">2 minutes ago</Text>
+            <Text color="gray.500" fontSize="xs">{moment(new Date(parseInt(props.post.createdAt))).from(new Date())}</Text>
         </HStack>
     )
 }

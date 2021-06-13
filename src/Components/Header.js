@@ -55,7 +55,7 @@ function Header() {
 
     const refreshTokens = async (refToken) => {
         try {
-            const response = await axios.post('http://localhost:3001/auth/refresh-token',
+            const response = await axios.post('https://college-query.herokuapp.com/auth/refresh-token',
             {
                 "refreshToken": refToken 
             })
